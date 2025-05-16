@@ -1,23 +1,15 @@
+// app.js
 const express = require("express");
 const app = express();
+const authorRouter = require("./routes/authorRouter");
+const bookRouter = require("./routes/bookRouter");
+const indexRouter = require("./routes/indexRouter");
 
-function serveIndeXFile(req, res){
-  res.sendFile(__dirname + "/index.html");
-}
-app.get("/", serveIndeXFile);
-app.get("/index", serveIndeXFile);
-app.get("/contact-me", (req, res) => {
-  res.sendFile(__dirname + "/contact-me.html");
-});
+app.use("/authors", authorRouter);
+app.use("/books", bookRouter);
+app.use("/", indexRouter);
 
-app.get("/about", (req, res) => {
-  res.sendFile(__dirname + "/about.html");
-});
-
-app.use( (req, res, next) => {
-  res.sendFile(__dirname + "/404.html");
-});
-
-app.listen(8080, () => {
-  console.log("Server is running on port 8080");
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`My first Express app - listening on port ${PORT}!`);
 });
