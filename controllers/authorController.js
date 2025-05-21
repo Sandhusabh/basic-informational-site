@@ -19,3 +19,7 @@ async function getAuthorById(req, res) {
     // So we will need to create a special type of middleware function if we want a different response and we will get to that in a bit.
   }
 };
+
+module.exports = {
+  getAuthorById, 
+}
